@@ -41,6 +41,7 @@ export const Input = styled.input`
     border: none;
     border-radius: 5px;
     font-size: 16px;
+    outline: none;
     background-color: gainsboro;
 
 `;
@@ -81,4 +82,10 @@ export const User = styled.li`
         font-size: 16px;
         font-weight: 700;
     }
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+}
 `;

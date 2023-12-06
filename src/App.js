@@ -1,7 +1,10 @@
-import React from 'react';
+
+import Axios from 'axios';
+import React, { useState, useRef } from 'react';
 import Users from './assets/usuarios.webp';
 import Arrow from './assets/arrow-right.svg';
 import Trash from './assets/trash-2.svg'
+
 
 import { Container, Image, ContainerItens, H1, Label, Input, Button, User } from './style'
 
@@ -9,10 +12,19 @@ import { Container, Image, ContainerItens, H1, Label, Input, Button, User } from
 
 const App = () => {
 
-  const users = [
-    { id: Math.random(), name: 'Pablo', age: 23 },
-    { id: Math.random(), name: 'Rafael', age: 30 },
-  ];
+  const [users, setUsers] = useState([]);
+  const inputName = useRef();
+  const inputAge = useRef();
+
+  function userRegister () {
+    setUsers([ ...users, {id: Math.random(), name: inputName.current.value, age: inputAge.current.value}]);
+}
+
+  function deleteUser (userId) {
+    const newUser = users.filter( user => user.id !== userId);
+    setUsers(newUser)
+
+  }
 
   return (
     <Container>
@@ -24,17 +36,17 @@ const App = () => {
         <Label for='name'>
           Nome:
         </Label>
-        <Input name='name' placeholder='Nome'>
+        <Input ref={inputName} name='name' placeholder='Nome'>
 
         </Input>
         <Label for='idade'>
           Idade:
         </Label>
-        <Input name='idade' placeholder='Idade'>
+        <Input ref={inputAge} name='idade' placeholder='Idade'>
 
         </Input>
 
-        <Button >
+        <Button onClick={userRegister}>
           Cadastrar
 
           <Image src={Arrow} />
@@ -46,7 +58,7 @@ const App = () => {
               <User key={user.id}>
                 <p>{user.name}</p>
                 <p>{user.age}</p>
-                <Image src={Trash}/>
+                <button onClick={() => deleteUser(user.id)}><Image src={Trash} /></button>
               </User>
             ))
           }
