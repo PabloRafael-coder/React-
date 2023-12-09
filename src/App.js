@@ -10,18 +10,29 @@ import { Container, Image, ContainerItens, H1, Label, Input, Button, User } from
 
 
 
+
 const App = () => {
 
   const [users, setUsers] = useState([]);
   const inputName = useRef();
   const inputAge = useRef();
 
-  function userRegister () {
-    setUsers([ ...users, {id: Math.random(), name: inputName.current.value, age: inputAge.current.value}]);
-}
+  async function userRegister() {
+    const response = await Axios.post('http://localhost:3001/users', { name: inputName.current.value, age: inputAge.current.value });
 
-  function deleteUser (userId) {
-    const newUser = users.filter( user => user.id !== userId);
+    setUsers([...users, response.data])
+
+    const newUsers = await Axios.get('http://localhost:3001/users');
+
+    setUsers(newUsers.data);
+
+    // setUsers([...users, { id: Math.random(), name: inputName.current.value, age: inputAge.current.value }]);
+
+
+  }
+
+  function deleteUser(userId) {
+    const newUser = users.filter(user => user.id !== userId);
     setUsers(newUser)
 
   }
