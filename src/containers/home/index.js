@@ -1,14 +1,13 @@
 
 import Axios from 'axios';
 import React, { useState, useRef } from 'react';
-import Users from './assets/usuarios.webp';
-import Arrow from './assets/arrow-right.svg';
-import Trash from './assets/trash-2.svg'
+import Users from '../../assets/usuarios.webp';
+import Arrow from '../../assets/arrow-right.svg';
+
+import { useNavigate } from 'react-router-dom';
 
 
-import { Container, Image, ContainerItens, H1, Label, Input, Button, User } from './style'
-
-
+import { Container, Image, ContainerItens, H1, Label, Input, Button } from './style'
 
 
 const App = () => {
@@ -17,23 +16,15 @@ const App = () => {
   const inputName = useRef();
   const inputAge = useRef();
 
+  const navigate = useNavigate()
+
+
   async function userRegister() {
     const response = await Axios.post('http://localhost:3001/users', { name: inputName.current.value, age: inputAge.current.value });
 
     setUsers([...users, response.data])
 
-    const newUsers = await Axios.get('http://localhost:3001/users');
-
-    setUsers(newUsers.data);
-
-    // setUsers([...users, { id: Math.random(), name: inputName.current.value, age: inputAge.current.value }]);
-
-
-  }
-
-  function deleteUser(userId) {
-    const newUser = users.filter(user => user.id !== userId);
-    setUsers(newUser)
+      navigate('/usuarios')
 
   }
 
@@ -57,23 +48,12 @@ const App = () => {
 
         </Input>
 
-        <Button onClick={userRegister}>
+        <Button to='/usuarios' onClick={userRegister}>
           Cadastrar
 
           <Image src={Arrow} />
         </Button>
 
-        <ul>
-          {
-            users.map((user) => (
-              <User key={user.id}>
-                <p>{user.name}</p>
-                <p>{user.age}</p>
-                <button onClick={() => deleteUser(user.id)}><Image src={Trash} /></button>
-              </User>
-            ))
-          }
-        </ul>
       </ContainerItens>
     </Container>
   );

@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import StyleGlobal from './styleGlobal';
+import StyleGlobal from './styles/styleGlobal';
 
+import Routes from './routes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   < >
-    <App />
+    <Routes />
     <StyleGlobal />
-  </>
+  </>,
 );
 
 
