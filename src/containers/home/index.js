@@ -4,10 +4,14 @@ import React, { useState, useRef } from 'react';
 import Users from '../../assets/usuarios.webp';
 import Arrow from '../../assets/arrow-right.svg';
 
+import H1 from '../../components/title';
+
+import ContainerItens from '../../components/ContainerItens';
+
 import { useNavigate } from 'react-router-dom';
 
 
-import { Container, Image, ContainerItens, H1, Label, Input, Button } from './style'
+import { Container, Image, Label, Input, Button } from './style'
 
 
 const App = () => {

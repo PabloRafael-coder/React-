@@ -7,8 +7,13 @@ import Trash from '../../assets/trash-2.svg'
 
 import { useNavigate } from 'react-router-dom';
 
+import H1 from '../../components/title'
 
-import { Container, Image, ContainerItens, H1, Button, User } from './style'
+import ContainerItens from '../../components/ContainerItens';
+
+import Button from '../../components/Button';
+
+import { Container, Image, User } from './style'
 
 
 
@@ -49,7 +54,7 @@ const Users = () => {
     <Container>
       <Image src={People} width='300px' />
       <ContainerItens>
-        <H1>
+        <H1 color={true}>
           Usuários Cadastrados
         </H1>
 

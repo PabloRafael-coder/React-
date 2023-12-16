@@ -15,21 +15,6 @@ export const Container = styled.div`
 export const Image = styled.img`
 `;
 
-export const ContainerItens = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-    width: 50%;
-    background-color: rgb(254,254,255);
-    border-radius: 10px;
-    gap: 10px;
-    padding: 50px 36px;
-`;
-
-export const H1 = styled.h1`
-    text-transform: uppercase;
-`;
-
 export const Label = styled.label`
     font-size: 20px;
     letter-spacing: 0.5px;
